@@ -1,0 +1,54 @@
+[
+  {
+    "timestamp": "2025-09-18T01:32:33.026004",
+    "channel_handle": "ElGrandeToto",
+    "extraction_date": "2025-09-17T23:32:33Z",
+    "videos_count": 10,
+    "quota_used": 9,
+    "files_saved": {
+      "channel_file": "..\\Data\\channels\\elgrandetoto\\elgrandetoto_20250917_233233_data.json",
+      "daily_file": "..\\Data\\daily_extractions\\extraction_20250918_elgrandetoto.json",
+      "metadata_file": "..\\Data\\metadata\\elgrandetoto_metadata.json"
+    },
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-09-18T01:33:27.992764",
+    "channel_handle": "MrBeast",
+    "extraction_date": "2025-09-17T23:33:27Z",
+    "videos_count": 50,
+    "quota_used": 12,
+    "files_saved": {
+      "channel_file": "..\\Data\\channels\\mrbeast\\mrbeast_20250917_233327_data.json",
+      "daily_file": "..\\Data\\daily_extractions\\extraction_20250918_mrbeast.json",
+      "metadata_file": "..\\Data\\metadata\\mrbeast_metadata.json"
+    },
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-09-18T01:34:45.717724",
+    "channel_handle": "MrBeast",
+    "extraction_date": "2025-09-17T23:34:45Z",
+    "videos_count": 50,
+    "quota_used": 15,
+    "files_saved": {
+      "channel_file": "..\\Data\\channels\\mrbeast\\mrbeast_20250917_233445_data.json",
+      "daily_file": "..\\Data\\daily_extractions\\extraction_20250918_mrbeast.json",
+      "metadata_file": "..\\Data\\metadata\\mrbeast_metadata.json"
+    },
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-09-18T01:37:20.277099",
+    "channel_handle": "Tayc",
+    "extraction_date": "2025-09-17T23:37:20Z",
+    "videos_count": 10,
+    "quota_used": 19,
+    "files_saved": {
+      "channel_file": "..\\Data\\channels\\tayc\\tayc_20250917_233720_data.json",
+      "daily_file": "..\\Data\\daily_extractions\\extraction_20250918_tayc.json",
+      "metadata_file": "..\\Data\\metadata\\tayc_metadata.json"
+    },
+    "status": "success"
+  }
+]

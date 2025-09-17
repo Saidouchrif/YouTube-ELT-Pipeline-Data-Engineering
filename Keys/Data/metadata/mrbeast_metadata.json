@@ -1,0 +1,42 @@
+{
+  "channel_handle": "MrBeast",
+  "last_extraction": "2025-09-17T23:34:45Z",
+  "total_extractions": 2,
+  "files_saved": {
+    "channel_file": "..\\Data\\channels\\mrbeast\\mrbeast_20250917_233445_data.json",
+    "daily_file": "..\\Data\\daily_extractions\\extraction_20250918_mrbeast.json"
+  },
+  "data_summary": {
+    "total_videos": 50,
+    "total_views": 8634732327,
+    "total_likes": 190842999,
+    "total_comments": 1255257,
+    "average_views": 172694646,
+    "most_viewed_video": "Slippery vs Sticky Stairs",
+    "date_range": {
+      "oldest": "2025-03-18T16:00:00Z",
+      "newest": "2025-09-16T17:00:04Z"
+    }
+  },
+  "quota_used": {
+    "date": "2025-09-18",
+    "daily_usage": 15,
+    "daily_limit": 10000,
+    "remaining": 9985,
+    "percentage_used": 0.15,
+    "total_usage": 15,
+    "status": "OK"
+  },
+  "extraction_history": [
+    {
+      "date": "2025-09-17T23:33:27Z",
+      "videos_count": 50,
+      "file_path": "..\\Data\\channels\\mrbeast\\mrbeast_20250917_233327_data.json"
+    },
+    {
+      "date": "2025-09-17T23:34:45Z",
+      "videos_count": 50,
+      "file_path": "..\\Data\\channels\\mrbeast\\mrbeast_20250917_233445_data.json"
+    }
+  ]
+}

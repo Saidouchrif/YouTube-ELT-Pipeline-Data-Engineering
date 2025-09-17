@@ -1,0 +1,37 @@
+{
+  "channel_handle": "ElGrandeToto",
+  "last_extraction": "2025-09-17T23:32:33Z",
+  "total_extractions": 1,
+  "files_saved": {
+    "channel_file": "..\\Data\\channels\\elgrandetoto\\elgrandetoto_20250917_233233_data.json",
+    "daily_file": "..\\Data\\daily_extractions\\extraction_20250918_elgrandetoto.json"
+  },
+  "data_summary": {
+    "total_videos": 10,
+    "total_views": 24309419,
+    "total_likes": 229552,
+    "total_comments": 5772,
+    "average_views": 2430941,
+    "most_viewed_video": "DINERO (VISUALIZER) #SALGOAT",
+    "date_range": {
+      "oldest": "2024-12-03T00:00:07Z",
+      "newest": "2025-08-04T20:00:07Z"
+    }
+  },
+  "quota_used": {
+    "date": "2025-09-18",
+    "daily_usage": 9,
+    "daily_limit": 10000,
+    "remaining": 9991,
+    "percentage_used": 0.09,
+    "total_usage": 9,
+    "status": "OK"
+  },
+  "extraction_history": [
+    {
+      "date": "2025-09-17T23:32:33Z",
+      "videos_count": 10,
+      "file_path": "..\\Data\\channels\\elgrandetoto\\elgrandetoto_20250917_233233_data.json"
+    }
+  ]
+}
