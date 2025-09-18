@@ -1,0 +1,28 @@
+[
+  {
+    "timestamp": "2025-09-19T00:46:28.718717",
+    "channel_handle": "MrBeast",
+    "extraction_date": "2025-09-18T22:46:28Z",
+    "videos_count": 10,
+    "quota_used": 3,
+    "files_saved": {
+      "channel_file": "..\\Data\\channels\\mrbeast\\mrbeast_20250918_224628_data.json",
+      "daily_file": "..\\Data\\daily_extractions\\extraction_20250919_mrbeast.json",
+      "metadata_file": "..\\Data\\metadata\\mrbeast_metadata.json"
+    },
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-09-19T00:48:43.264743",
+    "channel_handle": "MrBeast",
+    "extraction_date": "2025-09-18T22:48:43Z",
+    "videos_count": 8,
+    "quota_used": 6,
+    "files_saved": {
+      "channel_file": "..\\Data\\channels\\mrbeast\\mrbeast_20250918_224843_data.json",
+      "daily_file": "..\\Data\\daily_extractions\\extraction_20250919_mrbeast.json",
+      "metadata_file": "..\\Data\\metadata\\mrbeast_metadata.json"
+    },
+    "status": "success"
+  }
+]

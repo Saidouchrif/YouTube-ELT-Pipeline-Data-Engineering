@@ -1,30 +1,30 @@
 {
   "channel_handle": "MrBeast",
-  "last_extraction": "2025-09-17T23:34:45Z",
-  "total_extractions": 2,
+  "last_extraction": "2025-09-18T22:48:43Z",
+  "total_extractions": 4,
   "files_saved": {
-    "channel_file": "..\\Data\\channels\\mrbeast\\mrbeast_20250917_233445_data.json",
-    "daily_file": "..\\Data\\daily_extractions\\extraction_20250918_mrbeast.json"
+    "channel_file": "..\\Data\\channels\\mrbeast\\mrbeast_20250918_224843_data.json",
+    "daily_file": "..\\Data\\daily_extractions\\extraction_20250919_mrbeast.json"
   },
   "data_summary": {
-    "total_videos": 50,
-    "total_views": 8634732327,
-    "total_likes": 190842999,
-    "total_comments": 1255257,
-    "average_views": 172694646,
-    "most_viewed_video": "Slippery vs Sticky Stairs",
+    "total_videos": 8,
+    "total_views": 1161022311,
+    "total_likes": 34832635,
+    "total_comments": 120155,
+    "average_views": 145127788,
+    "most_viewed_video": "1 Subscriber = 1 Penny Donated",
     "date_range": {
-      "oldest": "2025-03-18T16:00:00Z",
+      "oldest": "2025-08-19T16:00:02Z",
       "newest": "2025-09-16T17:00:04Z"
     }
   },
   "quota_used": {
-    "date": "2025-09-18",
-    "daily_usage": 15,
+    "date": "2025-09-19",
+    "daily_usage": 6,
     "daily_limit": 10000,
-    "remaining": 9985,
-    "percentage_used": 0.15,
-    "total_usage": 15,
+    "remaining": 9994,
+    "percentage_used": 0.06,
+    "total_usage": 25,
     "status": "OK"
   },
   "extraction_history": [
@@ -37,6 +37,16 @@
       "date": "2025-09-17T23:34:45Z",
       "videos_count": 50,
       "file_path": "..\\Data\\channels\\mrbeast\\mrbeast_20250917_233445_data.json"
+    },
+    {
+      "date": "2025-09-18T22:46:28Z",
+      "videos_count": 10,
+      "file_path": "..\\Data\\channels\\mrbeast\\mrbeast_20250918_224628_data.json"
+    },
+    {
+      "date": "2025-09-18T22:48:43Z",
+      "videos_count": 8,
+      "file_path": "..\\Data\\channels\\mrbeast\\mrbeast_20250918_224843_data.json"
     }
   ]
 }
