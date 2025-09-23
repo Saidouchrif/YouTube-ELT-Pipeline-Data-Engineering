@@ -1,0 +1,15 @@
+[
+  {
+    "timestamp": "2025-09-24T01:12:25.051242",
+    "channel_handle": "MrBeast",
+    "extraction_date": "2025-09-23T23:12:25Z",
+    "videos_count": 4,
+    "quota_used": 3,
+    "files_saved": {
+      "channel_file": "..\\Data\\channels\\mrbeast\\mrbeast_20250923_231225_data.json",
+      "daily_file": "..\\Data\\daily_extractions\\extraction_20250924_mrbeast.json",
+      "metadata_file": "..\\Data\\metadata\\mrbeast_metadata.json"
+    },
+    "status": "success"
+  }
+]
