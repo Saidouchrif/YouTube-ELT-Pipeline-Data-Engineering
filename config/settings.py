@@ -24,22 +24,24 @@ class Config:
     except Exception:
         _AF_VAR = None
 
-    @staticmethod
-    def _get(key: str, default: str = "") -> str:
+    @classmethod
+    def _get(cls, key: str, default: str = "") -> str:
         """Get configuration value from Airflow Variable if available, else env."""
-        if Config._AF_VAR is not None:
+        if cls._AF_VAR is not None:
             try:
-                val = Config._AF_VAR.get(key)
+                val = cls._AF_VAR.get(key)
                 if val is not None:
                     return str(val)
             except Exception:
                 pass
         return os.getenv(key, default)
 
-    YOUTUBE_API_KEY = _get('YOUTUBE_API_KEY', '')
-    YOUTUBE_CHANNEL_HANDLE = _get('YOUTUBE_CHANNEL_HANDLE', 'MrBeast')
-    YOUTUBE_MAX_RESULTS = int(_get('YOUTUBE_MAX_RESULTS', '50'))
-    YOUTUBE_QUOTA_LIMIT = int(_get('YOUTUBE_QUOTA_LIMIT', '10000'))
+    # Initialize configuration values
+    def __init__(self):
+        self.YOUTUBE_API_KEY = self._get('YOUTUBE_API_KEY', '')
+        self.YOUTUBE_CHANNEL_HANDLE = self._get('YOUTUBE_CHANNEL_HANDLE', 'MrBeast')
+        self.YOUTUBE_MAX_RESULTS = int(self._get('YOUTUBE_MAX_RESULTS', '50'))
+        self.YOUTUBE_QUOTA_LIMIT = int(self._get('YOUTUBE_QUOTA_LIMIT', '10000'))
     
     # MongoDB Configuration
     MONGO_HOST = os.getenv('MONGO_HOST', 'mongodb')

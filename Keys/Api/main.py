@@ -14,6 +14,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from quota_manager import QuotaManager
 from pagination_manager import PaginationManager
 from data_saver import DataSaver
+from Api.mongodb_handler import MongoDBHandler
 
 app = FastAPI(title="YouTube ELT Pipeline API", version="2.0.0")
 
@@ -27,6 +28,7 @@ logger = logging.getLogger(__name__)
 quota_manager = QuotaManager()
 pagination_manager = PaginationManager(API_KEY, quota_manager)
 data_saver = DataSaver()
+mongodb_handler = MongoDBHandler()
 
 
 # ======================
@@ -37,6 +39,7 @@ class ChannelRequest(BaseModel):
     max_results: int = 5      # Nombre maximum de vidéos à récupérer (valeur par défaut)
     use_pagination: bool = True  # Utiliser la pagination pour récupérer plus de vidéos
     save_to_file: bool = True    # Sauvegarder automatiquement en fichier JSON
+    save_to_mongodb: bool = True  # Sauvegarder dans MongoDB
 
 
 # ======================
@@ -189,6 +192,26 @@ def get_channel_data(request: ChannelRequest):
                 logger.warning(f"Erreur lors de la sauvegarde: {e}")
                 result["_save_error"] = str(e)
         
+        # Sauvegarder dans MongoDB si demandé
+        if request.save_to_mongodb and not ("error" in result):
+            try:
+                # Sauvegarder les données brutes dans staging_data
+                staging_result = mongodb_handler.save_to_staging(result)
+                if staging_result:
+                    result["_mongodb_staging"] = staging_result
+                    logger.info(f"Données sauvegardées dans staging_data: {staging_result['inserted_id']}")
+                
+                # Sauvegarder les vidéos individuelles dans core_data
+                if "videos" in result and result["videos"]:
+                    core_result = mongodb_handler.save_videos_to_core(result["videos"], request.channel_handle)
+                    if core_result:
+                        result["_mongodb_core"] = core_result
+                        logger.info(f"Vidéos sauvegardées dans core_data: {core_result['upserted_count']}")
+                
+            except Exception as e:
+                logger.warning(f"Erreur lors de la sauvegarde MongoDB: {e}")
+                result["_mongodb_error"] = str(e)
+        
         return result
             
     except HTTPException:
@@ -280,3 +303,43 @@ def get_channel_data_history(channel_handle: str):
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erreur lors de la récupération de l'historique: {str(e)}")
+
+
+@app.get("/mongodb/stats")
+def get_mongodb_stats():
+    """Récupère les statistiques des collections MongoDB"""
+    try:
+        stats = mongodb_handler.get_collection_stats()
+        return {
+            "mongodb_connected": mongodb_handler.is_connected(),
+            "collections": stats,
+            "timestamp": datetime.datetime.utcnow().isoformat()
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erreur MongoDB: {str(e)}")
+
+@app.get("/mongodb/videos/{channel_handle}")
+def get_mongodb_videos(channel_handle: str, limit: int = 10):
+    """Récupère les vidéos d'une chaîne depuis MongoDB"""
+    try:
+        videos = mongodb_handler.get_recent_videos(channel_handle, limit)
+        return {
+            "channel_handle": channel_handle,
+            "videos_count": len(videos),
+            "videos": videos,
+            "timestamp": datetime.datetime.utcnow().isoformat()
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erreur MongoDB: {str(e)}")
+
+@app.get("/health")
+def health_check():
+    """Endpoint de santé pour vérifier que l'API fonctionne"""
+    mongodb_status = mongodb_handler.is_connected() if mongodb_handler else False
+    return {
+        "status": "healthy", 
+        "timestamp": datetime.datetime.utcnow().isoformat(),
+        "service": "YouTube ELT Pipeline API",
+        "version": "2.0.0",
+        "mongodb_connected": mongodb_status
+    }
