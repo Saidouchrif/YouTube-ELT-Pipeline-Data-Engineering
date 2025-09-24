@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # MongoDB service
+  mongodb:
+    image: mongo:7.0
+    container_name: youtube_mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: youtube_data
+    volumes:
+      - mongodb_data:/data/db
+      - ./mongodb-init:/docker-entrypoint-initdb.d
+    networks:
+      - airflow
+
+  # MongoDB Express for web interface
+  mongo-express:
+    image: mongo-express:1.0.0
+    container_name: youtube_mongo_express
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: password123
+      ME_CONFIG_MONGODB_URL: mongodb://admin:password123@mongodb:27017/
+      ME_CONFIG_BASICAUTH: false
+    depends_on:
+      - mongodb
+    networks:
+      - airflow
+
+volumes:
+  mongodb_data:
+    driver: local
+
+networks:
+  airflow:
+    external: true

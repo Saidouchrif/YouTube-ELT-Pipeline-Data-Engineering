@@ -1,0 +1,53 @@
+import os
+import json
+import pytest
+
+@pytest.fixture(autouse=True)
+def use_mock_db(monkeypatch):
+    monkeypatch.setenv("USE_MOCK_DB", "true")
+    monkeypatch.setenv("MONGO_HOST", "mock")
+    monkeypatch.setenv("MONGO_DATABASE", "youtube_data_test")
+    yield
+
+@pytest.fixture()
+def sample_dataset():
+    return {
+        "channel_handle": "MrBeast",
+        "extraction_date": "2025-01-01T00:00:00Z",
+        "videos": [
+            {
+                "video_id": "abc123",
+                "title": "I Gave $1,000,000 To Strangers! #short",
+                "description": "Short giveaway",
+                "published_at": "2024-12-01T12:00:00Z",
+                "duration": "PT45S",
+                "view_count": 1234567,
+                "like_count": 23456,
+                "comment_count": 3456,
+                "thumbnail_url": "https://img.youtube.com/vi/abc123/hqdefault.jpg",
+                "channel_id": "UCX6OQ3DkcsbYNE6H8uQQuVA",
+                "channel_title": "MrBeast",
+                "tags": ["giveaway", "short"],
+                "category_id": "24",
+                "default_language": "en",
+                "default_audio_language": "en"
+            },
+            {
+                "video_id": "def456",
+                "title": "Last To Leave Circle Wins $500,000",
+                "description": "Long challenge",
+                "published_at": "2024-11-15T15:00:00Z",
+                "duration": "PT25M10S",
+                "view_count": 98765432,
+                "like_count": 4321567,
+                "comment_count": 12567,
+                "thumbnail_url": "https://img.youtube.com/vi/def456/hqdefault.jpg",
+                "channel_id": "UCX6OQ3DkcsbYNE6H8uQQuVA",
+                "channel_title": "MrBeast",
+                "tags": ["challenge"],
+                "category_id": "24",
+                "default_language": "en",
+                "default_audio_language": "en"
+            }
+        ]
+    }

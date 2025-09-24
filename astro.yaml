@@ -1,0 +1,22 @@
+name: youtube-elt-pipeline
+description: YouTube ELT Pipeline for MrBeast channel data extraction and processing
+version: 1.0.0
+
+project:
+  name: youtube-elt-pipeline
+
+# Airflow configuration
+airflow:
+  version: 2.7.3
+  
+# Environment variables
+env_vars:
+  AIRFLOW__CORE__LOAD_EXAMPLES: False
+  AIRFLOW__WEBSERVER__EXPOSE_CONFIG: True
+  AIRFLOW__CORE__DAGS_FOLDER: /usr/local/airflow/dags
+  AIRFLOW__CORE__PLUGINS_FOLDER: /usr/local/airflow/plugins
+
+# Docker configuration
+docker:
+  registry: quay.io/astronomer/astro-runtime
+  tag: 9.6.0
