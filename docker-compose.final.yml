@@ -59,10 +59,12 @@ services:
       - MONGO_DATABASE=youtube_data
       - PYTHONPATH=/app:/app/Keys
       - PYTHONUNBUFFERED=1
+      - QUOTA_DATA_DIR=/app/quota_data
     volumes:
       - ./Keys:/app/Keys
       - ./data:/app/data
       - ./requirements-api.txt:/app/requirements-api.txt:ro
+      - api_quota_data:/app/quota_data
     working_dir: /app
     command: |
       bash -c "
@@ -140,6 +142,8 @@ volumes:
   mongodb_data:
     driver: local
   airflow_data:
+    driver: local
+  api_quota_data:
     driver: local
 
 networks:

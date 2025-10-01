@@ -207,6 +207,12 @@ def get_channel_data(request: ChannelRequest):
                     if core_result:
                         result["_mongodb_core"] = core_result
                         logger.info(f"Vidéos sauvegardées dans core_data: {core_result['upserted_count']}")
+                    
+                    # Sauvegarder aussi dans history_data pour l'historisation
+                    history_result = mongodb_handler.save_videos_to_history(result["videos"], request.channel_handle)
+                    if history_result:
+                        result["_mongodb_history"] = history_result
+                        logger.info(f"Vidéos sauvegardées dans history_data: {history_result['inserted_count']}")
                 
             except Exception as e:
                 logger.warning(f"Erreur lors de la sauvegarde MongoDB: {e}")

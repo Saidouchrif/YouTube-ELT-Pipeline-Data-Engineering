@@ -1,0 +1,7 @@
+{
+    "channel_handle": "MrBeast",
+    "max_results": 2,
+    "use_pagination": false,
+    "save_to_file": false,
+    "save_to_mongodb": true
+}

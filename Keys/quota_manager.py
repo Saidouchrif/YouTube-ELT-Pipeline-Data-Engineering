@@ -27,7 +27,10 @@ class QuotaManager:
     }
     
     def __init__(self, quota_file: str = "quota_usage.json"):
-        self.quota_file = quota_file
+        # Utiliser un répertoire spécifique pour les données de quota
+        quota_dir = os.getenv('QUOTA_DATA_DIR', '/app/quota_data')
+        os.makedirs(quota_dir, exist_ok=True)
+        self.quota_file = os.path.join(quota_dir, quota_file)
         self.daily_limit = 10000
         self.quota_data = self._load_quota_data()
     
