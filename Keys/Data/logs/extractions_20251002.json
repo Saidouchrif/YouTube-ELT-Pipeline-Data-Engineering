@@ -1,0 +1,28 @@
+[
+  {
+    "timestamp": "2025-10-02T00:33:58.334502",
+    "channel_handle": "ROSALÍA",
+    "extraction_date": "2025-10-02T00:33:58Z",
+    "videos_count": 5,
+    "quota_used": 3,
+    "files_saved": {
+      "channel_file": "../Data/channels/rosalía/rosalía_20251002_003358_data.json",
+      "daily_file": "../Data/daily_extractions/extraction_20251002_rosalía.json",
+      "metadata_file": "../Data/metadata/rosalía_metadata.json"
+    },
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-10-02T00:55:53.998698",
+    "channel_handle": "MrBeast",
+    "extraction_date": "2025-10-02T00:55:53Z",
+    "videos_count": 5,
+    "quota_used": 6,
+    "files_saved": {
+      "channel_file": "../Data/channels/mrbeast/mrbeast_20251002_005553_data.json",
+      "daily_file": "../Data/daily_extractions/extraction_20251002_mrbeast.json",
+      "metadata_file": "../Data/metadata/mrbeast_metadata.json"
+    },
+    "status": "success"
+  }
+]

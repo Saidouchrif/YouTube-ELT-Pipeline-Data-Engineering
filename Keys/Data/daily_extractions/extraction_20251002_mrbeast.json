@@ -1,0 +1,97 @@
+{
+  "channel_handle": "MrBeast",
+  "extraction_date": "2025-10-02T00:55:53Z",
+  "total_videos_requested": 5,
+  "total_videos_retrieved": 5,
+  "quota_status": {
+    "date": "2025-10-02",
+    "daily_usage": 6,
+    "daily_limit": 10000,
+    "remaining": 9994,
+    "percentage_used": 0.06,
+    "total_usage": 6,
+    "status": "OK"
+  },
+  "videos": [
+    {
+      "title": "Would You Risk Dying For $500,000?",
+      "duration": "PT25M26S",
+      "video_id": "zo7i8VTpfNM",
+      "like_count": "1665771",
+      "view_count": "59552185",
+      "published_at": "2025-09-27T16:00:04Z",
+      "comment_count": "23693",
+      "description": "i cant believe he did that at the end\nJack Link’s x MrBeast beef sticks have arrived! Click and go get yours now 👉 https://bit.ly/JLMBYT1 #snacklikeabeast #JackLinksPartner\n\nNew Merch - https://mrbeast.store\n\nCheck out Viewstats! - https://www.viewstats.com/\n\nSUBSCRIBE OR I TAKE YOUR DOG\n╔═╦╗╔╦╗╔═╦═╦╦╦╦╗╔═╗\n║╚╣║║║╚╣╚╣╔╣╔╣║╚╣═╣ \n╠╗║╚╝║║╠╗║╚╣║║║║║═╣\n╚═╩══╩═╩═╩═╩╝╚╩═╩═╝\n\nFor any questions or inquiries regarding this video, please reach out to chucky@mrbeastbusiness.com\n\n----------------------------",
+      "thumbnail_url": "https://i.ytimg.com/vi/zo7i8VTpfNM/mqdefault.jpg",
+      "tags": []
+    },
+    {
+      "title": "Would Your Grandma Go Skydiving?",
+      "duration": "PT42S",
+      "video_id": "NfhuGUyWYfQ",
+      "like_count": "1735417",
+      "view_count": "55135653",
+      "published_at": "2025-09-26T18:00:07Z",
+      "comment_count": "5560",
+      "description": "",
+      "thumbnail_url": "https://i.ytimg.com/vi/NfhuGUyWYfQ/mqdefault.jpg",
+      "tags": []
+    },
+    {
+      "title": "I Cooked A Pizza With Power Tools",
+      "duration": "PT40S",
+      "video_id": "wIpWCJKfRXs",
+      "like_count": "3942712",
+      "view_count": "164928758",
+      "published_at": "2025-09-23T16:00:07Z",
+      "comment_count": "13674",
+      "description": "",
+      "thumbnail_url": "https://i.ytimg.com/vi/wIpWCJKfRXs/mqdefault.jpg",
+      "tags": []
+    },
+    {
+      "title": "Which Celebrity Punches The Hardest?",
+      "duration": "PT47S",
+      "video_id": "9Xeepzg1B8I",
+      "like_count": "2282203",
+      "view_count": "87656887",
+      "published_at": "2025-09-19T16:00:03Z",
+      "comment_count": "7231",
+      "description": "",
+      "thumbnail_url": "https://i.ytimg.com/vi/9Xeepzg1B8I/mqdefault.jpg",
+      "tags": []
+    },
+    {
+      "title": "Answer The Call, Win $10,000",
+      "duration": "PT39S",
+      "video_id": "50G0kIty7Cg",
+      "like_count": "3765732",
+      "view_count": "137258330",
+      "published_at": "2025-09-16T17:00:04Z",
+      "comment_count": "9974",
+      "description": "",
+      "thumbnail_url": "https://i.ytimg.com/vi/50G0kIty7Cg/mqdefault.jpg",
+      "tags": []
+    }
+  ],
+  "_metadata": {
+    "saved_at": "2025-10-02T00:55:53.934260",
+    "saved_by": "YouTube ELT Pipeline",
+    "version": "2.0.0",
+    "data_type": "channel_videos",
+    "file_format": "json",
+    "encoding": "utf-8"
+  },
+  "_statistics": {
+    "total_videos": 5,
+    "total_views": 504531813,
+    "total_likes": 13391835,
+    "total_comments": 60132,
+    "average_views": 100906362,
+    "most_viewed_video": "I Cooked A Pizza With Power Tools",
+    "date_range": {
+      "oldest": "2025-09-16T17:00:04Z",
+      "newest": "2025-09-27T16:00:04Z"
+    }
+  }
+}

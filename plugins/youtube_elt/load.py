@@ -16,8 +16,8 @@ from datetime import datetime, timezone
 from pymongo import UpdateOne
 
 from config.settings import config
-from .db import get_collection, ensure_indexes, utcnow_iso
-from .transform import transform_dataset
+from youtube_elt.db import get_collection, ensure_indexes, utcnow_iso
+from youtube_elt.transform import transform_dataset
 
 
 def load_staging_from_file(file_path: str) -> int:
@@ -62,11 +62,14 @@ def transform_and_upsert_core(dataset: Dict[str, Any]) -> int:
     now = utcnow_iso()
     for v in videos:
         v["updated_at"] = now
-        v.setdefault("created_at", now)
+        # Remove created_at from the document to avoid conflict
+        v_copy = v.copy()
+        v_copy.pop("created_at", None)
+        
         ops.append(
             UpdateOne(
                 {"video_id": v["video_id"]},
-                {"$set": v, "$setOnInsert": {"created_at": now}},
+                {"$set": v_copy, "$setOnInsert": {"created_at": now}},
                 upsert=True,
             )
         )

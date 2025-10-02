@@ -110,7 +110,7 @@ services:
       - MONGO_PASSWORD=password123
       - MONGO_DATABASE=youtube_data
       - DATA_STAGING_PATH=/data/staging/
-      - PYTHONPATH=/opt/airflow
+      - PYTHONPATH=/opt/airflow:/opt/airflow/plugins
     volumes:
       - ./dags:/opt/airflow/dags:ro
       - ./plugins:/opt/airflow/plugins:ro

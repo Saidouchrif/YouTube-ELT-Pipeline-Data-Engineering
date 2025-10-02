@@ -73,7 +73,7 @@ class Config:
     @property
     def mongo_connection_string(self) -> str:
         """Generate MongoDB connection string."""
-        return f"mongodb://{self.MONGO_USERNAME}:{self.MONGO_PASSWORD}@{self.MONGO_HOST}:{self.MONGO_PORT}/{self.MONGO_DATABASE}"
+        return f"mongodb://{self.MONGO_USERNAME}:{self.MONGO_PASSWORD}@{self.MONGO_HOST}:{self.MONGO_PORT}/{self.MONGO_DATABASE}?authSource=admin"
     
     @property
     def youtube_api_config(self) -> Dict[str, Any]:

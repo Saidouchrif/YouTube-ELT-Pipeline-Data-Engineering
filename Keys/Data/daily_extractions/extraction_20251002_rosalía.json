@@ -1,0 +1,119 @@
+{
+  "channel_handle": "ROSALÍA",
+  "extraction_date": "2025-10-02T00:33:58Z",
+  "total_videos_requested": 5,
+  "total_videos_retrieved": 5,
+  "quota_status": {
+    "date": "2025-10-02",
+    "daily_usage": 3,
+    "daily_limit": 10000,
+    "remaining": 9997,
+    "percentage_used": 0.03,
+    "total_usage": 3,
+    "status": "OK"
+  },
+  "videos": [
+    {
+      "title": "ROSALÍA - Omega (Official Video) ft. Ralphie Choo",
+      "duration": "PT3M28S",
+      "video_id": "XyTk7qJN23A",
+      "like_count": "119564",
+      "view_count": "5492148",
+      "published_at": "2024-09-24T22:00:17Z",
+      "comment_count": "5898",
+      "description": "Official video for “Omega” by ROSALÍA feat. Ralphie Choo\n \nListen & Download “Omega” by ROSALÍA feat. Ralphie Choo out now: https://ROSALIA.lnk.to/Omega\nShop the Official Store: https://ROSALIA.lnk.to/merch\n \nAmazon Music - https://ROSALIA.lnk.to/Omega/AmazonMusic\nApple Music - https://ROSALIA.lnk.to/Omega/AppleMusic\nAudiomack - https://ROSALIA.lnk.to/Omega/Audiomack\nDeezer - https://ROSALIA.lnk.to/Omega/Deezer\niTunes - https://ROSALIA.lnk.to/Omega/iTunes\nSoundCloud - https://ROSALIA.lnk.to/Omeg",
+      "thumbnail_url": "https://i.ytimg.com/vi/XyTk7qJN23A/mqdefault.jpg",
+      "tags": [
+        "ROSALÍA",
+        "Rosalia",
+        "Ralphie Choo",
+        "Lo mejor de Rosalia",
+        "Éxitos de Rosalia",
+        "Hits virales",
+        "Canciones en tendencia",
+        "Canción de Rosalia",
+        "Video de Rosalia",
+        "melhor de Rosalia"
+      ]
+    },
+    {
+      "title": "❤️❤️❤️",
+      "duration": "PT21S",
+      "video_id": "ZX6O8iehU3Y",
+      "like_count": "81295",
+      "view_count": "1328329",
+      "published_at": "2023-06-12T21:23:04Z",
+      "comment_count": "1453",
+      "description": "",
+      "thumbnail_url": "https://i.ytimg.com/vi/ZX6O8iehU3Y/mqdefault.jpg",
+      "tags": []
+    },
+    {
+      "title": "ROSALÍA - TUYA (Official Video)",
+      "duration": "PT2M55S",
+      "video_id": "F84pjEryeC0",
+      "like_count": "384561",
+      "view_count": "37813679",
+      "published_at": "2023-06-08T22:00:14Z",
+      "comment_count": "10421",
+      "description": "Official Video for “TUYA” by ROSALÍA\n\nListen to & Download “TUYA” out now: https://rosalia.lnk.to/TUYA\nShop the Official Store: https://rosalia.lnk.to/merch\n\nAmazon Music - https://rosalia.lnk.to/TUYA/amazonmusic\nApple Music - https://rosalia.lnk.to/TUYA/applemusic\nDeezer - https://rosalia.lnk.to/TUYA/deezer\niTunes - https://rosalia.lnk.to/TUYA/itunes\nSoundCloud - https://rosalia.lnk.to/TUYA/soundcloud\nSpotify - https://rosalia.lnk.to/TUYA/spotify\nTidal - https://rosalia.lnk.to/TUYA/tidal\nYouTub",
+      "thumbnail_url": "https://i.ytimg.com/vi/F84pjEryeC0/mqdefault.jpg",
+      "tags": [
+        "Lo mejor de Rosalia",
+        "Éxitos de Rosalia",
+        "Hits virales",
+        "Canciones en tendencia",
+        "Canción de Rosalia",
+        "Video de Rosalia",
+        "melhor de Rosalia",
+        "Sucessos de Rosalia",
+        "Vídeo de Rosalia",
+        "Música de Rosalia"
+      ]
+    },
+    {
+      "title": "❤️",
+      "duration": "PT16S",
+      "video_id": "AEsSlia1dls",
+      "like_count": "83874",
+      "view_count": "1434238",
+      "published_at": "2023-06-05T22:26:23Z",
+      "comment_count": "1115",
+      "description": "",
+      "thumbnail_url": "https://i.ytimg.com/vi/AEsSlia1dls/mqdefault.jpg",
+      "tags": []
+    },
+    {
+      "title": "reaccionando a snacks de japón (2/2)",
+      "duration": "PT59S",
+      "video_id": "2gNk2_lV-DQ",
+      "like_count": "537808",
+      "view_count": "7981534",
+      "published_at": "2023-06-02T16:56:32Z",
+      "comment_count": "2044",
+      "description": "",
+      "thumbnail_url": "https://i.ytimg.com/vi/2gNk2_lV-DQ/mqdefault.jpg",
+      "tags": []
+    }
+  ],
+  "_metadata": {
+    "saved_at": "2025-10-02T00:33:58.306238",
+    "saved_by": "YouTube ELT Pipeline",
+    "version": "2.0.0",
+    "data_type": "channel_videos",
+    "file_format": "json",
+    "encoding": "utf-8"
+  },
+  "_statistics": {
+    "total_videos": 5,
+    "total_views": 54049928,
+    "total_likes": 1207102,
+    "total_comments": 20931,
+    "average_views": 10809985,
+    "most_viewed_video": "ROSALÍA - TUYA (Official Video)",
+    "date_range": {
+      "oldest": "2023-06-02T16:56:32Z",
+      "newest": "2024-09-24T22:00:17Z"
+    }
+  }
+}

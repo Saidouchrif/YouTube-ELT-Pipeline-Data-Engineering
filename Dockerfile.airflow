@@ -22,6 +22,6 @@ COPY --chown=airflow:root config /opt/airflow/config
 COPY --chown=airflow:root soda /opt/airflow/soda
 
 # Set environment variables
-ENV PYTHONPATH="${PYTHONPATH}:/opt/airflow"
+ENV PYTHONPATH="${PYTHONPATH}:/opt/airflow:/opt/airflow/plugins"
 ENV AIRFLOW__CORE__LOAD_EXAMPLES=False
 ENV AIRFLOW__WEBSERVER__EXPOSE_CONFIG=True

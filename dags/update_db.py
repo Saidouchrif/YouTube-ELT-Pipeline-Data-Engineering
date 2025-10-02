@@ -1,7 +1,10 @@
 """
 Airflow DAG: update_db
-- Load latest staging JSON into MongoDB staging.
-- Transform and upsert into core and history collections.
+- Read data from MongoDB staging collection.
+- Apply transformations and data cleaning (types, formats, duplicates).
+- Load into core schema with UPSERT operations.
+- Maintain history SCD2 style.
+- Log success/errors in Airflow.
 """
 from __future__ import annotations
 
@@ -15,13 +18,13 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 
 from config.settings import config
-from plugins.youtube_elt.load import load_staging_from_file, transform_and_upsert_core, upsert_history
+from youtube_elt.load import load_staging_from_file, transform_and_upsert_core, upsert_history
+from youtube_elt.db import get_collection
 
 
 DEFAULT_ARGS = {
     "owner": "data-engineering",
     "depends_on_past": False,
-    "retries": 2,
     "retry_delay": timedelta(minutes=5),
 }
 
@@ -34,30 +37,86 @@ def find_latest_staging_file() -> str:
     return files[-1]
 
 
-def load_to_staging(**context):
-    file_path = context.get("ti").xcom_pull(dag_id="produce_JSON", task_ids="extract_youtube_data", key="staging_file_path")
-    if not file_path:
-        file_path = find_latest_staging_file()
-    count = load_staging_from_file(file_path)
-    return {"file": file_path, "staging_upserts": count}
+def read_staging_data(**context):
+    """Read data from MongoDB staging collection."""
+    print("Reading data from MongoDB staging collection...")
+    
+    try:
+        staging_collection = get_collection(config.STAGING_COLLECTION)
+        
+        # Get all records from staging (exclude MongoDB _id field)
+        staging_records = list(staging_collection.find({}, {"_id": 0}))
+        
+        if not staging_records:
+            print("No records found in staging collection")
+            return {"records_count": 0}
+        
+        print(f"Found {len(staging_records)} records in staging collection")
+        
+        # Convert to the format expected by transform functions
+        dataset = {
+            "channel_handle": config.YOUTUBE_CHANNEL_HANDLE,
+            "extraction_date": datetime.utcnow().isoformat(),
+            "total_videos": len(staging_records),
+            "videos": staging_records
+        }
+        
+        # Store dataset in XCom for next tasks
+        context["ti"].xcom_push(key="staging_dataset", value=dataset)
+        
+        return {"records_count": len(staging_records)}
+        
+    except Exception as e:
+        print(f"Error reading staging data: {str(e)}")
+        raise
 
 
 def transform_upsert_core(**context):
-    file_path = context["ti"].xcom_pull(task_ids="load_to_staging")
-    fp = file_path["file"] if isinstance(file_path, dict) else find_latest_staging_file()
-    with open(fp, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    count = transform_and_upsert_core(data)
-    return {"core_upserts": count}
+    """Transform staging data and upsert to core collection."""
+    print("Transforming and upserting data to core collection...")
+    
+    try:
+        # Get dataset from previous task
+        dataset = context["ti"].xcom_pull(key="staging_dataset", task_ids="read_staging_data")
+        
+        if not dataset:
+            raise ValueError("No staging dataset found in XCom")
+        
+        print(f"Processing {dataset['total_videos']} videos for core collection")
+        
+        # Transform and upsert to core
+        count = transform_and_upsert_core(dataset)
+        
+        print(f"Successfully upserted {count} records to core collection")
+        return {"core_upserts": count}
+        
+    except Exception as e:
+        print(f"Error in transform_upsert_core: {str(e)}")
+        raise
 
 
 def upsert_hist(**context):
-    file_path = context["ti"].xcom_pull(task_ids="load_to_staging")
-    fp = file_path["file"] if isinstance(file_path, dict) else find_latest_staging_file()
-    with open(fp, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    count = upsert_history(data)
-    return {"history_inserts": count}
+    """Upsert data to history collection with SCD2 logic."""
+    print("Upserting data to history collection...")
+    
+    try:
+        # Get dataset from previous task
+        dataset = context["ti"].xcom_pull(key="staging_dataset", task_ids="read_staging_data")
+        
+        if not dataset:
+            raise ValueError("No staging dataset found in XCom")
+        
+        print(f"Processing {dataset['total_videos']} videos for history collection")
+        
+        # Upsert to history with SCD2
+        count = upsert_history(dataset)
+        
+        print(f"Successfully processed {count} records in history collection")
+        return {"history_inserts": count}
+        
+    except Exception as e:
+        print(f"Error in upsert_hist: {str(e)}")
+        raise
 
 
 with DAG(
@@ -70,9 +129,9 @@ with DAG(
     tags=["youtube", "elt", "load"],
 ) as dag:
 
-    load_task = PythonOperator(
-        task_id="load_to_staging",
-        python_callable=load_to_staging,
+    read_task = PythonOperator(
+        task_id="read_staging_data",
+        python_callable=read_staging_data,
         provide_context=True,
     )
 
@@ -88,4 +147,5 @@ with DAG(
         provide_context=True,
     )
 
-    load_task >> [core_task, history_task]
+    # Set task dependencies
+    read_task >> [core_task, history_task]
