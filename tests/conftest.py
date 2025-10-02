@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.join(project_root, 'plugins'))
 
 @pytest.fixture(scope="session", autouse=True)
 def setup_test_environment():
-    """Set up test environment variables."""
+    """Set up test environment variables and disable Airflow integration."""
     test_env = {
         'USE_MOCK_DB': 'true',
         'YOUTUBE_API_KEY': 'test_api_key',
@@ -33,7 +33,9 @@ def setup_test_environment():
         'RETRY_DELAY': '1'
     }
     
-    with patch.dict(os.environ, test_env):
+    # Disable Airflow Variables globally for tests
+    with patch.dict(os.environ, test_env), \
+         patch('config.settings.Config._AF_VAR', None):
         yield
 
 

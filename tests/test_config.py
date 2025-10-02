@@ -70,7 +70,7 @@ class TestConfigProperties:
         """Test MongoDB connection string with default values."""
         config = Config()
         
-        expected = "mongodb://admin:password123@mongodb:27017/youtube_data?authSource=admin"
+        expected = "mongodb://test_user:test_password@localhost:27017/test_database?authSource=admin"
         assert config.mongo_connection_string == expected
     
     def test_youtube_api_config(self):
@@ -102,12 +102,12 @@ class TestConfigProperties:
         for key in required_keys:
             assert key in mongodb_config
         
-        # Check default values
-        assert mongodb_config['host'] == 'mongodb'
+        # Check default values (from test environment)
+        assert mongodb_config['host'] == 'localhost'
         assert mongodb_config['port'] == 27017
-        assert mongodb_config['username'] == 'admin'
-        assert mongodb_config['password'] == 'password123'
-        assert mongodb_config['database'] == 'youtube_data'
+        assert mongodb_config['username'] == 'test_user'
+        assert mongodb_config['password'] == 'test_password'
+        assert mongodb_config['database'] == 'test_database'
     
     def test_collections_config(self):
         """Test collections configuration property."""
