@@ -114,6 +114,14 @@ class TestConfigProperties:
     def test_mongodb_config(self):
         """Test MongoDB configuration property."""
         config = Config()
+        
+        # Set known values for testing
+        config.MONGO_HOST = 'localhost'
+        config.MONGO_PORT = 27017
+        config.MONGO_USERNAME = 'test_user'
+        config.MONGO_PASSWORD = 'test_password'
+        config.MONGO_DATABASE = 'test_database'
+        
         mongodb_config = config.mongodb_config
         
         # Check that all required keys are present
@@ -121,12 +129,16 @@ class TestConfigProperties:
         for key in required_keys:
             assert key in mongodb_config
         
-        # Check default values (from test environment)
+        # Check the values we set
         assert mongodb_config['host'] == 'localhost'
         assert mongodb_config['port'] == 27017
         assert mongodb_config['username'] == 'test_user'
         assert mongodb_config['password'] == 'test_password'
         assert mongodb_config['database'] == 'test_database'
+        
+        # Check that connection_string is properly formatted
+        expected_connection = "mongodb://test_user:test_password@localhost:27017/test_database?authSource=admin"
+        assert mongodb_config['connection_string'] == expected_connection
     
     def test_collections_config(self):
         """Test collections configuration property."""
