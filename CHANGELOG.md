@@ -2,6 +2,19 @@
 
 Toutes les modifications notables de ce projet seront documentées dans ce fichier.
 
+## [1.1.2] - 2025-01-02
+
+### 🔧 Corrigé
+- **Tests de configuration** : Résolution des conflits avec variables Airflow
+- **CI/CD Pipeline** : Correction des erreurs SQLAlchemy en mode test
+- **Isolation des tests** : Utilisation d'overrides directs au lieu de patches d'environnement
+- **Validation de format** : Tests plus robustes pour les chaînes de connexion MongoDB
+
+### 🧪 Améliorations Tests
+- **Désactivation Airflow Variables** : Évite les erreurs de base de données inexistante
+- **Tests isolés** : Pas de conflits entre configuration globale et tests locaux
+- **Approche par override** : Tests plus prévisibles et maintenables
+
 ## [1.1.1] - 2025-01-02
 
 ### ✅ Ajouté
