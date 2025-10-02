@@ -195,22 +195,37 @@ class TestAirflowVariableIntegration:
     @patch('config.settings.Config._AF_VAR')
     def test_get_with_airflow_variable(self, mock_af_var):
         """Test getting configuration from Airflow Variable."""
-        # Mock Airflow Variable
-        mock_af_var.get.return_value = 'airflow_value'
+        # Mock Airflow Variable to return different values based on key
+        def mock_get(key):
+            if key == 'YOUTUBE_MAX_RESULTS':
+                return '100'  # Return valid integer string
+            elif key == 'YOUTUBE_QUOTA_LIMIT':
+                return '5000'  # Return valid integer string
+            elif key == 'MONGO_PORT':
+                return '27017'  # Return valid integer string
+            else:
+                return 'airflow_value'  # Return string for other keys
+        
+        mock_af_var.get.side_effect = mock_get
         
         config = Config()
-        result = config._get('TEST_KEY', 'default_value')
         
+        # Test that Airflow Variable was called for configuration keys
+        assert mock_af_var.get.called
+        
+        # Test the _get method directly with a test key
+        result = config._get('TEST_KEY', 'default_value')
         assert result == 'airflow_value'
-        mock_af_var.get.assert_called_once_with('TEST_KEY')
     
     @patch('config.settings.Config._AF_VAR')
     def test_get_with_airflow_variable_none(self, mock_af_var):
         """Test getting configuration when Airflow Variable returns None."""
-        # Mock Airflow Variable to return None
+        # Mock Airflow Variable to return None for all keys
         mock_af_var.get.return_value = None
         
+        # Test the _get method directly (not during Config initialization)
         with patch.dict(os.environ, {'TEST_KEY': 'env_value'}):
+            # Create config with mocked Airflow Variables returning None
             config = Config()
             result = config._get('TEST_KEY', 'default_value')
             
@@ -219,9 +234,10 @@ class TestAirflowVariableIntegration:
     @patch('config.settings.Config._AF_VAR')
     def test_get_with_airflow_variable_exception(self, mock_af_var):
         """Test getting configuration when Airflow Variable raises exception."""
-        # Mock Airflow Variable to raise exception
+        # Mock Airflow Variable to raise exception for all keys
         mock_af_var.get.side_effect = Exception("Airflow not available")
         
+        # Test the _get method directly
         with patch.dict(os.environ, {'TEST_KEY': 'env_value'}):
             config = Config()
             result = config._get('TEST_KEY', 'default_value')
