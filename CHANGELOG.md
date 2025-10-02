@@ -2,6 +2,21 @@
 
 Toutes les modifications notables de ce projet seront documentées dans ce fichier.
 
+## [1.1.1] - 2025-01-02
+
+### ✅ Ajouté
+- **Suite de tests complète** : 25+ tests unitaires et d'intégration
+- **Configuration pytest** : `pytest.ini` et `conftest.py`
+- **Tests par module** : extract, transform, load, db, config
+- **Fixtures de test** : données d'exemple et mocks
+- **Markers pytest** : unit, integration, slow
+
+### 🔧 Corrigé
+- **Tests manquants** : Recréation de la suite de tests après nettoyage
+- **Coverage CI/CD** : Configuration pour génération de rapports
+- **Path configuration** : Ajout des chemins Python dans conftest.py
+- **Mock objects** : Configuration des mocks pour MongoDB et config
+
 ## [1.1.0] - 2025-01-02
 
 ### ✅ Ajouté

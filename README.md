@@ -522,13 +522,19 @@ pip install -r requirements.txt
 # Exécution de tous les tests
 pytest tests/ -v
 
-# Tests avec couverture
-pytest tests/ --cov=plugins/youtube_elt --cov-report=html
+# Tests avec couverture (CI/CD)
+pytest tests/ --cov=plugins --cov-report=xml
 
-# Tests spécifiques
-pytest tests/test_extract.py -v
-pytest tests/test_transform.py -v
-pytest tests/test_load.py -v
+# Tests spécifiques par module
+pytest tests/test_extract.py -v     # Tests d'extraction
+pytest tests/test_transform.py -v  # Tests de transformation
+pytest tests/test_load.py -v       # Tests de chargement
+pytest tests/test_db.py -v         # Tests de base de données
+pytest tests/test_config.py -v     # Tests de configuration
+
+# Tests par catégorie
+pytest -m unit tests/              # Tests unitaires uniquement
+pytest -m integration tests/       # Tests d'intégration uniquement
 ```
 
 ### 📊 Types de Tests
