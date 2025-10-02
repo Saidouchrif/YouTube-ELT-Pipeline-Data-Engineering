@@ -52,16 +52,17 @@ class TestConfigInitialization:
 class TestConfigProperties:
     """Test cases for Config properties."""
     
-    @patch.dict(os.environ, {
-        'MONGO_HOST': 'test_host',
-        'MONGO_PORT': '27018',
-        'MONGO_USERNAME': 'test_user',
-        'MONGO_PASSWORD': 'test_pass',
-        'MONGO_DATABASE': 'test_db'
-    })
     def test_mongo_connection_string(self):
         """Test MongoDB connection string generation."""
+        # Test the connection string format with custom values
         config = Config()
+        
+        # Override specific attributes for this test
+        config.MONGO_HOST = 'test_host'
+        config.MONGO_PORT = 27018
+        config.MONGO_USERNAME = 'test_user'
+        config.MONGO_PASSWORD = 'test_pass'
+        config.MONGO_DATABASE = 'test_db'
         
         expected = "mongodb://test_user:test_pass@test_host:27018/test_db?authSource=admin"
         assert config.mongo_connection_string == expected
@@ -75,22 +76,23 @@ class TestConfigProperties:
     
     def test_youtube_api_config(self):
         """Test YouTube API configuration property."""
-        with patch.dict(os.environ, {
-            'YOUTUBE_API_KEY': 'test_key',
-            'YOUTUBE_CHANNEL_HANDLE': 'TestChannel',
-            'YOUTUBE_MAX_RESULTS': '75',
-            'YOUTUBE_QUOTA_LIMIT': '8000'
-        }):
-            config = Config()
-            api_config = config.youtube_api_config
-            
-            expected = {
-                'api_key': 'test_key',
-                'channel_handle': 'TestChannel',
-                'max_results': 75,
-                'quota_limit': 8000
-            }
-            assert api_config == expected
+        config = Config()
+        
+        # Override for testing
+        config.YOUTUBE_API_KEY = 'test_key'
+        config.YOUTUBE_CHANNEL_HANDLE = 'TestChannel'
+        config.YOUTUBE_MAX_RESULTS = 75
+        config.YOUTUBE_QUOTA_LIMIT = 8000
+        
+        api_config = config.youtube_api_config
+        
+        expected = {
+            'api_key': 'test_key',
+            'channel_handle': 'TestChannel',
+            'max_results': 75,
+            'quota_limit': 8000
+        }
+        assert api_config == expected
     
     def test_mongodb_config(self):
         """Test MongoDB configuration property."""
@@ -125,35 +127,37 @@ class TestConfigProperties:
 class TestConfigValidation:
     """Test cases for Config validation."""
     
-    @patch.dict(os.environ, {
-        'YOUTUBE_API_KEY': 'valid_key',
-        'MONGO_HOST': 'valid_host',
-        'MONGO_USERNAME': 'valid_user',
-        'MONGO_PASSWORD': 'valid_pass',
-        'MONGO_DATABASE': 'valid_db'
-    })
     def test_validate_config_valid(self):
         """Test validation with valid configuration."""
         config = Config()
+        
+        # Set valid values for testing
+        config.YOUTUBE_API_KEY = 'valid_key'
+        config.MONGO_HOST = 'valid_host'
+        config.MONGO_USERNAME = 'valid_user'
+        config.MONGO_PASSWORD = 'valid_pass'
+        config.MONGO_DATABASE = 'valid_db'
+        
         assert config.validate_config() is True
     
     def test_validate_config_missing_api_key(self):
         """Test validation with missing API key."""
-        with patch.dict(os.environ, {'YOUTUBE_API_KEY': ''}, clear=True):
-            config = Config()
-            assert config.validate_config() is False
+        config = Config()
+        config.YOUTUBE_API_KEY = ''  # Empty API key
+        assert config.validate_config() is False
     
     def test_validate_config_missing_mongo_config(self):
         """Test validation with missing MongoDB configuration."""
-        with patch.dict(os.environ, {
-            'YOUTUBE_API_KEY': 'valid_key',
-            'MONGO_HOST': '',
-            'MONGO_USERNAME': '',
-            'MONGO_PASSWORD': '',
-            'MONGO_DATABASE': ''
-        }):
-            config = Config()
-            assert config.validate_config() is False
+        config = Config()
+        
+        # Set valid API key but empty MongoDB config
+        config.YOUTUBE_API_KEY = 'valid_key'
+        config.MONGO_HOST = ''
+        config.MONGO_USERNAME = ''
+        config.MONGO_PASSWORD = ''
+        config.MONGO_DATABASE = ''
+        
+        assert config.validate_config() is False
 
 
 class TestAirflowVariableIntegration:

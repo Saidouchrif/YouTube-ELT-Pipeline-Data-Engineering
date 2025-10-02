@@ -132,6 +132,14 @@ def mock_config():
     return config
 
 
+@pytest.fixture
+def custom_env():
+    """Fixture for tests that need custom environment variables."""
+    def _custom_env(env_vars):
+        return patch.dict(os.environ, env_vars, clear=False)
+    return _custom_env
+
+
 @pytest.fixture(autouse=True)
 def reset_global_state():
     """Reset global state before each test."""
