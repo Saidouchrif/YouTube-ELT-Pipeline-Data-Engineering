@@ -139,6 +139,16 @@ graph TB
 
 ### ⚡ Installation Express
 
+#### Option 1: Script Automatique (Recommandé)
+```powershell
+# Windows PowerShell
+.\start-project.ps1
+
+# Pour arrêter le projet
+.\stop-project.ps1
+```
+
+#### Option 2: Installation Manuelle
 ```bash
 # 1. Cloner le repository
 git clone https://github.com/Saidouchrif/YouTube-ELT-Pipeline-Data-Engineering-.git
@@ -463,6 +473,42 @@ docker logs youtube_mongodb --tail 50
 
 # Test de connectivité
 docker exec youtube_airflow python -c "from youtube_elt.db import get_mongo_client; print('MongoDB OK')"
+```
+
+### 🚨 Dépannage des Problèmes Courants
+
+#### **Problème: Erreur d'installation Soda Core**
+```bash
+# Solution: Utiliser requirements-ci.txt pour CI/CD
+pip install -r requirements-ci.txt
+
+# Ou installer Soda Core séparément
+pip install soda-core
+```
+
+#### **Problème: Conteneur Airflow ne démarre pas**
+```bash
+# Vérifier les logs
+docker logs youtube_airflow
+
+# Redémarrer le conteneur
+docker-compose -f docker-compose.final.yml restart youtube_airflow
+```
+
+#### **Problème: MongoDB connection refused**
+```bash
+# Vérifier que MongoDB est démarré
+docker-compose -f docker-compose.final.yml ps
+
+# Redémarrer MongoDB
+docker-compose -f docker-compose.final.yml restart mongodb
+```
+
+#### **Problème: API YouTube quota exceeded**
+```bash
+# Vérifier votre quota dans Google Cloud Console
+# Ajuster YOUTUBE_MAX_RESULTS dans .env
+# Modifier la fréquence des DAGs
 ```
 
 ## 🧪 Tests

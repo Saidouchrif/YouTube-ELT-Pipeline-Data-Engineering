@@ -1,14 +1,17 @@
 data_source mongo:
-  type: mongo
+  type: mongodb
   connection:
     host: ${MONGO_HOST:mongodb}
     port: ${MONGO_PORT:27017}
     username: ${MONGO_USERNAME:admin}
     password: ${MONGO_PASSWORD:password123}
     database: ${MONGO_DATABASE:youtube_data}
+    auth_database: admin
 
+# Configuration locale (pas de Soda Cloud requis)
 soda_cloud:
-  host: https://cloud.soda.io
-  api_key_id: ${SODA_API_KEY_ID:}
-  api_key_secret: ${SODA_API_KEY_SECRET:}
-  # Optional; if not provided, scans run locally without pushing to Soda Cloud
+  # Configuration optionnelle pour Soda Cloud
+  # Laissé vide pour exécution locale
+  host: 
+  api_key_id: 
+  api_key_secret:

@@ -1,32 +1,22 @@
-checks for mongo:
-  - name: staging_data_presence
-    dataset: staging_data
-    checks:
-      - row_count > 0:
-          name: staging has rows
-  - name: core_data_presence
-    dataset: core_data
-    checks:
-      - row_count > 0:
-          name: core has rows
-  - name: core_video_id_uniqueness
-    dataset: core_data
-    checks:
-      - duplicate_count(video_id) = 0:
-          name: video_id is unique in core
-  - name: core_schema_format
-    dataset: core_data
-    checks:
-      - missing_count(video_id) = 0
-      - invalid_count(view_count) = 0:
-          valid min: 0
-      - invalid_count(like_count) = 0:
-          valid min: 0
-      - invalid_count(comment_count) = 0:
-          valid min: 0
-  - name: history_scd_fields
-    dataset: history_data
-    checks:
-      - schema:
-          warn:
-            when required column missing: [video_id, valid_from, valid_to, created_at, updated_at]
+# Checks de qualité des données pour MongoDB
+checks for staging_data:
+  - row_count > 0
+  - missing_count(video_id) = 0
+  - duplicate_count(video_id) = 0
+
+checks for core_data:
+  - row_count > 0
+  - missing_count(video_id) = 0
+  - missing_count(title) = 0
+  - duplicate_count(video_id) = 0
+  - invalid_count(view_count) = 0:
+      valid min: 0
+  - invalid_count(like_count) = 0:
+      valid min: 0
+  - invalid_count(comment_count) = 0:
+      valid min: 0
+
+checks for history_data:
+  - row_count > 0
+  - missing_count(video_id) = 0
+  - missing_count(valid_from) = 0
